@@ -9,7 +9,8 @@ export enum PAGE {
 	VENUE = "/venue",
 	CONTACT = "/contact",
 	GIFTS = "/gifts",
-	CAPTURE = "/capture"
+	CAPTURE = "/capture",
+	ADMIN = "/admin69"
 }
 
 /**

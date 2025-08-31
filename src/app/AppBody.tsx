@@ -1,4 +1,5 @@
 import { PAGE, usePage } from "../hooks/usePage";
+import { AdminPage } from "../pages/AdminPage";
 import { CapturePage } from "../pages/CapturePage";
 import { ContactPage } from "../pages/ContactPage";
 import { GiftsPage } from "../pages/GiftsPage";
@@ -23,6 +24,8 @@ export function AppBody() {
 			return <ContactPage />
 		case PAGE.CAPTURE:
 			return <CapturePage />
+		case PAGE.ADMIN:
+			return <AdminPage />
 	}
 
 	return <NotFoundPage />;
