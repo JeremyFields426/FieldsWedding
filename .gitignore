@@ -1,0 +1,19 @@
+# dependencies
+/node_modules
+
+# testing
+/coverage
+.nyc_output
+
+# documentation
+/docs
+
+# production
+/build
+
+# configuration
+.env
+
+# source control
+.plastic
+.git
