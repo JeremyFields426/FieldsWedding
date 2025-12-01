@@ -1,83 +1,58 @@
-import { Button, Group, Header } from "@mantine/core";
-import { PAGE, useGoHome, usePage } from "../hooks/usePage";
+import { Burger, Group, Header, Menu, Tabs, useMantineTheme } from "@mantine/core";
+import { PAGE, usePage } from "../hooks/usePage";
 import {
 	HomeIcon,
 	EnvelopeClosedIcon,
-	ChatBubbleIcon,
 	CameraIcon,
 	HeartFilledIcon,
-	RocketIcon
+	RocketIcon,
+	GearIcon
 } from "@radix-ui/react-icons";
+import { useState } from "react";
+import { useMediaQuery } from "@mantine/hooks";
 
 export function AppHeader() {
-	const { SetPageFn } = usePage();
-	const { GoHomeFn } = useGoHome();
+	const theme = useMantineTheme()
+	const { SetPageFn, page } = usePage();
 
-	const button_color = "yellow"
+	const [opened, setOpened] = useState(false);
+	const onChange = (active: number, page: string) => {
+		SetPageFn(page as PAGE)
+		setOpened(false)
+	};
+
+	const isMobile = useMediaQuery('(max-width: 500px)');
+
+	let menu = (
+		<Tabs active={Object.values(PAGE).indexOf(page)} color="yellow" onTabChange={onChange}>
+			<Tabs.Tab label="Us" icon={<HeartFilledIcon />} tabKey={PAGE.HOME_PAGE}/>
+			<Tabs.Tab label="RSVP" icon={<EnvelopeClosedIcon />} tabKey={PAGE.RSVP_PAGE}/>
+			<Tabs.Tab label="Itinerary" icon={<HomeIcon />} tabKey={PAGE.ITINERARY_PAGE}/>
+			<Tabs.Tab label="Gallery" icon={<CameraIcon />} tabKey={PAGE.GALLERY_PAGE}/>
+			<Tabs.Tab label="Gifts" icon={<RocketIcon />} tabKey={PAGE.GIFTS_PAGE}/>
+			{page == PAGE.ADMIN_PAGE && <Tabs.Tab label="Admin" icon={<GearIcon />} tabKey={PAGE.ADMIN_PAGE}/>}
+		</Tabs>
+	)
+
+	if (isMobile) {
+		menu = (
+			<Group position="right" sx={{ padding: theme.spacing.xs }}>
+				<Menu control={<Burger size="md" opened={opened} onClick={() => setOpened(!opened)} />}>
+					<Menu.Label>Application</Menu.Label>
+					<Menu.Item icon={<HeartFilledIcon />} onClick={() => onChange(0, PAGE.HOME_PAGE)}>Us</Menu.Item>
+					<Menu.Item icon={<EnvelopeClosedIcon />} onClick={() => onChange(0, PAGE.RSVP_PAGE)}>RSVP</Menu.Item>
+					<Menu.Item icon={<HomeIcon />} onClick={() => onChange(0, PAGE.ITINERARY_PAGE)}>Itinerary</Menu.Item>
+					<Menu.Item icon={<CameraIcon />} onClick={() => onChange(0, PAGE.GALLERY_PAGE)}>Gallery</Menu.Item>
+					<Menu.Item icon={<RocketIcon />} onClick={() => onChange(0, PAGE.GIFTS_PAGE)}>Gifts</Menu.Item>
+					{page == PAGE.ADMIN_PAGE && <Menu.Item icon={<GearIcon />} onClick={() => onChange(0, PAGE.ADMIN_PAGE)}>Admin</Menu.Item>}
+				</Menu>
+			</Group>
+		)
+	}
 
 	return (
-		<Header height={70} padding="xl" style={{ background: "#ac073081" }}>
-			<Group position="center" spacing={100}>
-				<Button
-					size="xs"
-					variant="subtle"
-					rightIcon={<HeartFilledIcon />}
-					onClick={GoHomeFn}
-					color={button_color}
-				>
-					Our Story
-				</Button>
-
-				<Button
-					size="xs"
-					variant="subtle"
-					color={button_color}
-					rightIcon={<EnvelopeClosedIcon />}
-					onClick={() => SetPageFn(PAGE.RSVP_PAGE)}
-				>
-					RSVP
-				</Button>
-
-				<Button
-					size="xs"
-					variant="subtle"
-					color={button_color}
-					rightIcon={<HomeIcon />}
-					onClick={() => SetPageFn(PAGE.VENUE)}
-				>
-					Venue
-				</Button>
-
-				<Button
-					size="xs"
-					variant="subtle"
-					color={button_color}
-					rightIcon={<RocketIcon />}
-					onClick={() => SetPageFn(PAGE.GIFTS)}
-				>
-					Gifts
-				</Button>
-
-				<Button
-					size="xs"
-					variant="subtle"
-					color={button_color}
-					rightIcon={<ChatBubbleIcon />}
-					onClick={() => SetPageFn(PAGE.CONTACT)}
-				>
-					Contact Us
-				</Button>
-
-				<Button
-					size="xs"
-					variant="subtle"
-					color={button_color}
-					rightIcon={<CameraIcon />}
-					onClick={() => SetPageFn(PAGE.CAPTURE)}
-				>
-					Capture Our Wedding
-				</Button>
-			</Group>
+		<Header height="" style={{ background: "#ac073081" }}>
+			{menu}
 		</Header>
 	);
 }

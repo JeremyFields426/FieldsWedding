@@ -13,7 +13,7 @@ interface FetchManyRSVPResponse {
 	rsvps: RSVPDetails[];
 }
 
-interface PostAuthRequest {
+interface PostRSVPRequest {
 	rsvp: RSVPDetails;
 }
 
@@ -29,7 +29,7 @@ export class RSVPAPI extends Route {
 		return rsvps
 	}
 
-	public override async Post(req: PostAuthRequest) {
+	public override async Post(req: PostRSVPRequest) {
 		return await this.UseAxiosPost<{}>(req);
 	}
 

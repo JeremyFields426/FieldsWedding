@@ -1,12 +1,11 @@
 import { PAGE, usePage } from "../hooks/usePage";
 import { AdminPage } from "../pages/AdminPage";
-import { CapturePage } from "../pages/CapturePage";
-import { ContactPage } from "../pages/ContactPage";
+import { PhotosPage } from "../pages/GalleryPage";
 import { GiftsPage } from "../pages/GiftsPage";
 import { HomePage } from "../pages/HomePage";
 import { NotFoundPage } from "../pages/NotFoundPage";
 import { RSVPPage } from "../pages/RSVPPage";
-import { VenuePage } from "../pages/VenuePage";
+import { ItineraryPage } from "../pages/ItineraryPage";
 
 export function AppBody() {
 	const { page } = usePage();
@@ -16,15 +15,13 @@ export function AppBody() {
 			return <HomePage />;
 		case PAGE.RSVP_PAGE:
 			return <RSVPPage />
-		case PAGE.VENUE:
-			return <VenuePage />
-		case PAGE.GIFTS:
+		case PAGE.ITINERARY_PAGE:
+			return <ItineraryPage />
+		case PAGE.GIFTS_PAGE:
 			return <GiftsPage />
-		case PAGE.CONTACT:
-			return <ContactPage />
-		case PAGE.CAPTURE:
-			return <CapturePage />
-		case PAGE.ADMIN:
+		case PAGE.GALLERY_PAGE:
+			return <PhotosPage />
+		case PAGE.ADMIN_PAGE:
 			return <AdminPage />
 	}
 

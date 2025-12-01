@@ -3,14 +3,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 export type SwitchPageFn = (page: PAGE) => void;
 
 export enum PAGE {
-	NOT_FOUND_PAGE = "/*",
 	HOME_PAGE = "/",
 	RSVP_PAGE = "/rsvp",
-	VENUE = "/venue",
-	CONTACT = "/contact",
-	GIFTS = "/gifts",
-	CAPTURE = "/capture",
-	ADMIN = "/admin69"
+	ITINERARY_PAGE = "/itinerary",
+	GALLERY_PAGE = "/gallery",
+	GIFTS_PAGE = "/gifts",
+	ADMIN_PAGE = "/admin69",
+	NOT_FOUND_PAGE = "/*",
 }
 
 /**

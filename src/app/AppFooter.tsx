@@ -15,7 +15,7 @@ export function AppFooter() {
                     }}
                 />
 
-                <Title order={4} color="white">Created by Ashtyn and Jeremy Fields</Title>
+                <Title order={5} color="white">Created by Ashtyn and Jeremy Fields</Title>
             </Group>
 		</Header>
 	);

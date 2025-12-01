@@ -12,13 +12,17 @@ export abstract class Route {
 	private static readonly API_KEY = process.env
 		.REACT_APP_SERVER_API_KEY as string;
 
-	private static readonly HEADERS = {
-		APIKey: this.API_KEY,
+	public static readonly CORS_HEADERS = {
 		"Access-Control-Allow-Credentials": "true",
 		"Access-Control-Allow-Origin": "*",
 		"Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
 		"Access-Control-Allow-Headers":
 			"X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+	}
+
+	private static readonly HEADERS = {
+		APIKey: this.API_KEY,
+		...Route.CORS_HEADERS
 	};
 
 	public constructor() {
