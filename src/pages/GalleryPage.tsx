@@ -4,7 +4,7 @@ import { Dropzone, IMAGE_MIME_TYPE } from "@mantine/dropzone";
 import { UploadIcon } from "@radix-ui/react-icons";
 import "../index.css"
 import { useState } from "react";
-import { useForm, useUuid } from "@mantine/hooks";
+import { useForm, useUuid, useViewportSize } from "@mantine/hooks";
 import { useMutation, useQuery } from "react-query";
 import { CACHE, Routes } from "../api/Routes";
 import { PhotoDetails } from "../model/PhotoDetails";
@@ -88,13 +88,14 @@ export function PhotosPage() {
 	const theme = useMantineTheme();
     const { classes } = useStyles();
     const [searchParams] = useSearchParams();
+    const { width: screenWidth } = useViewportSize();
     const { AddPhotosFn, isLoading: isPostLoading } = useAddPhotos();
 
     const isAdmin = searchParams.get("admin") === "69"
 
     const { data, isLoading: isFetchLoading } = useQuery(CACHE.PHOTO, Routes.PhotoAPI.FetchMany)
 
-    const width = 400
+    const width = Math.min(screenWidth - theme.spacing.xl, 400)
     const imageHeight = width / 1.4
     const breakpoints: SimpleGridBreakpoint[] = []
     for (var i = 1; i < 10; i++) {

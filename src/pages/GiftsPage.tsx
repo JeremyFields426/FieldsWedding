@@ -4,6 +4,7 @@ import BBBWeddingRegistryImage from "../assets/BBB Wedding Registry.png";
 import Image45ACP from "../assets/45 ACP Image.png";
 import Image9mm from "../assets/9mm Image.png";
 import Image223Rem from "../assets/223 Rem Image.png";
+import { useViewportSize } from "@mantine/hooks";
 
 function GiftCaptureCard(props: { title: string, link: string, image: string, notes: string, width: number, imageHeight: number }) {
     const theme = useMantineTheme();
@@ -25,8 +26,9 @@ function GiftCaptureCard(props: { title: string, link: string, image: string, no
 
 export function GiftsPage() {
     const theme = useMantineTheme();
+    const { width: screenWidth } = useViewportSize();
 
-    const width = 400
+    const width = Math.min(screenWidth - theme.spacing.xl, 400)
     const imageHeight = width / 1.4
     const breakpoints: SimpleGridBreakpoint[] = []
     for (var i = 1; i < 10; i++) {
