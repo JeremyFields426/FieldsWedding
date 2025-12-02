@@ -14,7 +14,7 @@ import { Route } from "../api/Route";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 
-function ImageCapture(props: { id: string, title: string, date: string, imageUrl: string, isAccepted: boolean, isAdmin: boolean, width: number, imageHeight: number}) {
+function ImageCaptureCard(props: { id: string, title: string, date: string, imageUrl: string, isAccepted: boolean, isAdmin: boolean, width: number, imageHeight: number}) {
     const theme = useMantineTheme();
 
     const { DeletePhotoFn, isLoading } = useDeletePhoto();
@@ -138,7 +138,7 @@ export function PhotosPage() {
                         Array.from({ length: 10 }).map((_, i) => <ImageCaptureSkeleton key={i} imageHeight={imageHeight}/>)
                     }
 
-                    {data?.map((photo) => <ImageCapture key={photo.id} id={photo.id} title={photo.title} date={photo.date} imageUrl={photo.imageUrl} isAccepted={photo.isAccepted} isAdmin={isAdmin} width={width} imageHeight={imageHeight}/>)}
+                    {data?.map((photo) => <ImageCaptureCard key={photo.id} id={photo.id} title={photo.title} date={photo.date} imageUrl={photo.imageUrl} isAccepted={photo.isAccepted} isAdmin={isAdmin} width={width} imageHeight={imageHeight}/>)}
                 </SimpleGrid>
 			</Group>
 		</ScrollArea>

@@ -1,8 +1,8 @@
-import { Center, TextInput, Title, useMantineTheme, Button, MultiSelect, SelectItem, Checkbox, Textarea, ScrollArea, Group, RadioGroup, Radio, Notification, Alert } from "@mantine/core";
+import { Center, TextInput, Title, useMantineTheme, Button, MultiSelect, SelectItem, Checkbox, Textarea, ScrollArea, Group, RadioGroup, Radio, Notification, Alert, LoadingOverlay } from "@mantine/core";
 import { useForm } from "@mantine/hooks";
 import { RSVPDetails } from "../model/RSVPDetails";
-import { useMutation } from "react-query";
-import { Routes } from "../api/Routes";
+import { useMutation, useQuery } from "react-query";
+import { CACHE, Routes } from "../api/Routes";
 import { UseForm } from "@mantine/hooks/lib/use-form/use-form";
 import {
 	CheckIcon,
@@ -23,7 +23,8 @@ export function RSVPPage() {
 		},
 	});
 
-    const { SubmitRSVPFn, isLoading, error, setError } = useSubmitRSVP(form);
+    const { SubmitRSVPFn, isLoading: isSubmitLoading, error, setError } = useSubmitRSVP(form);
+    const { isLoading: isPingLoading, status: pingStatus } = useQuery(CACHE.PING, Routes.HealthAPI.FetchOne)
     
     const dietaryRestrictionOptions: SelectItem[] = [
         { label: "Gluten Allergy", value: "Gluten Allergy" },
@@ -34,6 +35,7 @@ export function RSVPPage() {
 
     return (
         <ScrollArea>
+            <LoadingOverlay visible={isPingLoading || pingStatus !== "success"} loaderProps={{ size: 'sm', color: 'pink', variant: 'bars' }} />
             <div
                 style={{
                     padding: theme.spacing.xl,
@@ -131,7 +133,7 @@ export function RSVPPage() {
                         <Button
                             type="submit"
                             variant="outline"
-                            loading={isLoading}
+                            loading={isSubmitLoading}
                             sx={{
                                 marginBottom: theme.spacing.sm,
                                 width: "50%",

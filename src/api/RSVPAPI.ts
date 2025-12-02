@@ -17,6 +17,10 @@ interface PostRSVPRequest {
 	rsvp: RSVPDetails;
 }
 
+interface DeleteRSVPRequest {
+	name: string;
+}
+
 export class RSVPAPI extends Route {
 
 	public override async FetchOne(req: FetchOneRSVPRequest) {
@@ -30,7 +34,11 @@ export class RSVPAPI extends Route {
 	}
 
 	public override async Post(req: PostRSVPRequest) {
-		return await this.UseAxiosPost<{}>(req);
+		return await this.UseAxiosPost(req);
+	}
+
+	public override async Delete(req: DeleteRSVPRequest) {
+		return await this.UseAxiosDelete(req);
 	}
 
 	////////////////////////////////////////////////////////////

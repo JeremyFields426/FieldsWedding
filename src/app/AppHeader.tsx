@@ -37,14 +37,14 @@ export function AppHeader() {
 	if (isMobile) {
 		menu = (
 			<Group position="right" sx={{ padding: theme.spacing.xs }}>
-				<Menu control={<Burger size="md" opened={opened} onClick={() => setOpened(!opened)} />}>
+				<Menu onClose={() => setOpened(false)} control={<Burger size="md" opened={opened} onClick={() => setOpened(!opened)} />}>
 					<Menu.Label>Application</Menu.Label>
-					<Menu.Item icon={<HeartFilledIcon />} onClick={() => onChange(0, PAGE.HOME_PAGE)}>Us</Menu.Item>
-					<Menu.Item icon={<EnvelopeClosedIcon />} onClick={() => onChange(0, PAGE.RSVP_PAGE)}>RSVP</Menu.Item>
-					<Menu.Item icon={<HomeIcon />} onClick={() => onChange(0, PAGE.ITINERARY_PAGE)}>Itinerary</Menu.Item>
-					<Menu.Item icon={<CameraIcon />} onClick={() => onChange(0, PAGE.GALLERY_PAGE)}>Gallery</Menu.Item>
-					<Menu.Item icon={<RocketIcon />} onClick={() => onChange(0, PAGE.GIFTS_PAGE)}>Gifts</Menu.Item>
-					{page == PAGE.ADMIN_PAGE && <Menu.Item icon={<GearIcon />} onClick={() => onChange(0, PAGE.ADMIN_PAGE)}>Admin</Menu.Item>}
+					<Menu.Item icon={<HeartFilledIcon color="pink"/>} onClick={() => onChange(0, PAGE.HOME_PAGE)} color={page === PAGE.HOME_PAGE ? "yellow" : undefined}>Us</Menu.Item>
+					<Menu.Item icon={<EnvelopeClosedIcon color="white"/>} onClick={() => onChange(0, PAGE.RSVP_PAGE)} color={page === PAGE.RSVP_PAGE ? "yellow" : undefined}>RSVP</Menu.Item>
+					<Menu.Item icon={<HomeIcon color="cyan"/>} onClick={() => onChange(0, PAGE.ITINERARY_PAGE)} color={page === PAGE.ITINERARY_PAGE ? "yellow" : undefined}>Itinerary</Menu.Item>
+					<Menu.Item icon={<CameraIcon color="black"/>} onClick={() => onChange(0, PAGE.GALLERY_PAGE)} color={page === PAGE.GALLERY_PAGE ? "yellow" : undefined}>Gallery</Menu.Item>
+					<Menu.Item icon={<RocketIcon color="magenta"/>} onClick={() => onChange(0, PAGE.GIFTS_PAGE)} color={page === PAGE.GIFTS_PAGE ? "yellow" : undefined}>Gifts</Menu.Item>
+					{page == PAGE.ADMIN_PAGE && <Menu.Item icon={<GearIcon />} onClick={() => onChange(0, PAGE.ADMIN_PAGE)} color={page === PAGE.ADMIN_PAGE ? "yellow" : undefined}>Admin</Menu.Item>}
 				</Menu>
 			</Group>
 		)
