@@ -93,7 +93,7 @@ export function PhotosPage() {
 
     const isAdmin = searchParams.get("admin") === "69"
 
-    const { data, isLoading: isFetchLoading } = useQuery(CACHE.PHOTO, Routes.PhotoAPI.FetchMany)
+    const { data, isLoading: isFetchLoading, status } = useQuery(CACHE.PHOTO, Routes.PhotoAPI.FetchMany)
 
     const width = Math.min(screenWidth - theme.spacing.xl, 400)
     const imageHeight = width / 1.4
@@ -113,7 +113,7 @@ export function PhotosPage() {
                         accept={IMAGE_MIME_TYPE}
                         sx={{ width }}
                         loading={isPostLoading}
-                        disabled={isFetchLoading}
+                        disabled={isFetchLoading || status !== "success"}
                         className={isFetchLoading ? classes.disabled : undefined}
                     >
                         {() => (
@@ -135,7 +135,7 @@ export function PhotosPage() {
                     </Dropzone>
 
                     {
-                        isFetchLoading &&
+                        (isFetchLoading || status !== "success") &&
                         Array.from({ length: 10 }).map((_, i) => <ImageCaptureSkeleton key={i} imageHeight={imageHeight}/>)
                     }
 
