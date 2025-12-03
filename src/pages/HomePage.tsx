@@ -7,6 +7,12 @@ import "../index.css"
 export function HomePage() {
 	const theme = useMantineTheme();
 
+	const now = new Date();
+	const nowDate = new Date(now.getFullYear(), now.getMonth() + 1, now.getDay())
+	const weddingDate = new Date(2025, 12, 17);
+	const diff = Math.abs(nowDate.getTime() - weddingDate.getTime());
+	const daysUntilWedding = Math.max(0, Math.floor(diff / (1000 * 3600 * 24))); 
+
 	const pictures = 
 		<SimpleGrid cols={3} breakpoints={[{ maxWidth: "md", cols: 1 }]} spacing="xl" style={{ paddingTop: theme.spacing.md, paddingBottom: theme.spacing.md }}>
 			<Group direction="column" spacing={theme.spacing.xs} position="center">
@@ -46,7 +52,10 @@ export function HomePage() {
 	return (
 		<ScrollArea>
 			<Group position="center" direction="column" style={{ paddingTop: theme.spacing.xl }}>
-				<Title color="white" order={1} style={{ fontFamily: "MeowScript" }}>Mr. and Mrs. Fields</Title>
+				<Group direction="column" position="center" spacing={theme.spacing.xs}>
+					<Title color="white" order={1} style={{ fontFamily: "MeowScript" }}>Mr. and Mrs. Fields</Title>
+					<Title color="white" order={5}>{daysUntilWedding} Days Until the Wedding!</Title>
+				</Group>
 
 				{pictures}
 			</Group>

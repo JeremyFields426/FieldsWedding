@@ -56,10 +56,10 @@ export function ItineraryPage() {
                                 <Divider my="xs" label="Appetizers" variant="dashed" />
                                 <List>
                                     <List.Item>HOUSE BLENDED ANGUS MEATBALLS</List.Item>
-                                    <List.Item><Badge variant="light">Gluten-Free</Badge> MOZZARELLA, TOMATO & BASIL SKEWERS</List.Item>
+                                    <List.Item>MOZZARELLA, TOMATO & BASIL SKEWERS</List.Item>
                                     <List.Item>SPINACH & CHEESE DUMPLINGS</List.Item>
                                     <List.Item>MINI CRAB CAKES</List.Item>
-                                    <List.Item><Badge variant="light">Gluten-Free</Badge> PROSCIUTTO WRAPPED SEASONAL FRUIT</List.Item>
+                                    <List.Item>PROSCIUTTO WRAPPED SEASONAL FRUIT</List.Item>
                                 </List>
 
                                 <Divider my="xs" label="Entree" variant="dashed" />
@@ -69,7 +69,7 @@ export function ItineraryPage() {
                                     <List.Item>SEARED SALMON</List.Item>
                                     <List.Item>CHICKEN SCARPARIELLO</List.Item>
                                     <List.Item>PENNE VODKA</List.Item>
-                                    <List.Item><Badge variant="light">Gluten-Free</Badge> ROASTED POTATOES</List.Item>
+                                    <List.Item>ROASTED POTATOES</List.Item>
                                     <List.Item>CAESAR SALAD</List.Item>
                                 </List>
 
