@@ -4,8 +4,8 @@ export type SwitchPageFn = (page: PAGE) => void;
 
 export enum PAGE {
 	HOME_PAGE = "/",
-	RSVP_PAGE = "/rsvp",
-	ITINERARY_PAGE = "/itinerary",
+	// RSVP_PAGE = "/rsvp",
+	// ITINERARY_PAGE = "/itinerary",
 	GALLERY_PAGE = "/gallery",
 	GIFTS_PAGE = "/gifts",
 	ADMIN_PAGE = "/admin69",

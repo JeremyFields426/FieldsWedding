@@ -13,10 +13,10 @@ export function AppBody() {
 	switch (page) {
 		case PAGE.HOME_PAGE:
 			return <HomePage />;
-		case PAGE.RSVP_PAGE:
-			return <RSVPPage />
-		case PAGE.ITINERARY_PAGE:
-			return <ItineraryPage />
+		// case PAGE.RSVP_PAGE:
+		// 	return <RSVPPage />
+		// case PAGE.ITINERARY_PAGE:
+		// 	return <ItineraryPage />
 		case PAGE.GIFTS_PAGE:
 			return <GiftsPage />
 		case PAGE.GALLERY_PAGE:
