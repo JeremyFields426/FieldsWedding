@@ -38,6 +38,7 @@ export function GiftsPage() {
     return (
         <ScrollArea>
             <Group position="center" direction="column" style={{ paddingTop: theme.spacing.xl }}>
+                <Title order={3} sx={{ paddingTop: theme.spacing.xl, paddingLeft: theme.spacing.xl, paddingRight: theme.spacing.xl }}>Our Address: 1970 Veterans Highway K-33, Levittown, PA 19056</Title>
                 <SimpleGrid breakpoints={breakpoints} spacing="xl" style={{ paddingTop: theme.spacing.md, paddingBottom: theme.spacing.md }}>
                     <GiftCaptureCard title="Amazon Wedding Registry" notes="" link="https://www.amazon.com/wedding/registry/34GWXOLSTBBYO" image={AmazonWeddingRegistryImage} width={width} imageHeight={imageHeight} />
                     <GiftCaptureCard title="Future House Fund" notes="" link="https://account.venmo.com/u/Jeremy-Fields-426" image={FutureHouseFundImage} width={width} imageHeight={imageHeight} />
