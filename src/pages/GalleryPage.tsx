@@ -13,6 +13,7 @@ import { v4 } from "uuid";
 import { Route } from "../api/Route";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
+import { useWorker } from "@koale/useworker";
 
 function ImageCaptureCard(props: { id: string, title: string, date: string, imageUrl: string, isAccepted: boolean, isAdmin: boolean, width: number, imageHeight: number}) {
     const theme = useMantineTheme();
@@ -102,6 +103,8 @@ export function PhotosPage() {
         breakpoints.push({ maxWidth: ((i + 1) * (width + theme.spacing.xl)), cols: i })
     }
 
+    const MIME_TYPE = ["image/png", "image/gif", "image/jpeg", "image/svg+xml", "image/webp", "video/mp4", "video/ogg", "video/webm"]
+
 	return (
 		<ScrollArea>
 			<Group position="center" direction="column" style={{ paddingTop: theme.spacing.xl }}>
@@ -109,8 +112,8 @@ export function PhotosPage() {
                     <Dropzone
                         onDrop={AddPhotosFn}
                         onReject={() => {}}
-                        maxSize={10 * 1024 ** 2}
-                        accept={IMAGE_MIME_TYPE}
+                        maxSize={200 * 1024 ** 2}
+                        accept={MIME_TYPE}
                         sx={{ width }}
                         loading={isPostLoading}
                         disabled={isFetchLoading || status !== "success"}
@@ -123,10 +126,10 @@ export function PhotosPage() {
 
                                     <div>
                                         <Text size="xl" inline align="center">
-                                            Drag images here or click to select files.
+                                            Drag images/videos here or click to select files.
                                         </Text>
                                         <Text size="sm" color="dimmed" inline mt={7} align="center">
-                                            Attach as many files as you like, each file should not exceed 10mb.
+                                            Attach as many files as you like, each file should not exceed 200mb.
                                         </Text>
                                     </div>
                                 </Group>
@@ -166,6 +169,8 @@ export function useAddPhotos() {
 	const InvalidateFn = useInvalidation();
 
 	const AddPhotos = async (files: File[]) => {
+        const photos: PhotoDetails[] = []
+
 		for (const file of files) {
             const id = v4();
 
@@ -182,10 +187,12 @@ export function useAddPhotos() {
                 isAccepted: true
             }
             
-            await Routes.PhotoAPI.Post({
-                photo
-            });
+            photos.push(photo)
         }
+
+        await Routes.PhotoAPI.Post({
+            photos
+        });
 
 		await InvalidateFn(CACHE.PHOTO);
 	};

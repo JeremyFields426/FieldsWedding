@@ -14,7 +14,7 @@ interface FetchManyPhotosResponse {
 }
 
 interface PostPhotoRequest {
-    photo: PhotoDetails;
+    photos: PhotoDetails[];
 }
 
 interface DeletePhotoRequest {
