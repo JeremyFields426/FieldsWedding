@@ -169,15 +169,21 @@ export function useAddPhotos() {
 	const InvalidateFn = useInvalidation();
 
 	const AddPhotos = async (files: File[]) => {
-        const photos: PhotoDetails[] = []
-
-		for (const file of files) {
+        const images: [string, File, Promise<string>][] = []
+        for (const file of files) {
             const id = v4();
 
-            const imageURL = await Routes.ImageAPI.Post({
+            const promise = Routes.ImageAPI.Post({
                 id,
                 imageFile: file
             })
+
+            images.push([id, file, promise])
+        }
+
+        const photos: PhotoDetails[] = []
+		for (const [id, file, promise] of images) {
+            const imageURL = await promise;
             
             const photo: PhotoDetails = {
                 id,
